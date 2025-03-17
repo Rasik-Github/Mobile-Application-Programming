@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    transition: background-color 0.5s ease;
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background-color: #333;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.nav_list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+.nav_list li {
+    padding: 15px 20px;
+}
+.nav_list li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+    transition: 0.3s;
+}
+.nav_list li a:hover {
+    color: rgb(168, 166, 166);
+}
+.burger {
+    display: none;
+    cursor: pointer;
+}
+.burger .line {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    margin: 6px;
+}
+
+/*Toggle Button */
+.toggle-btn {
+    display: block;
+    margin: 30px auto;
+    background-color: yellow;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+.toggle-btn:hover {
+    background-color: lightgray;
+}
+/* Media Query */
+@media only screen and (max-width: 1000px) {
+    .burger {
+        display: block;
+    }
+    .nav_list {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        flex-direction: column;
+        text-align: center;
+        display: none;
+    }
+    .nav_list.active {
+        display: flex;
+    }
+
+    .nav_list li {
+        padding: 15px 0;
+        width: 100%;
+    }
+}
+/* Background color toggle */
+body.active {
+    background-color: #1e90ff; /* New color when toggled */
+}
