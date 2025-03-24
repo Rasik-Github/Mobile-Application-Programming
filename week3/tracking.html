@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Cargo - SwiftCargo</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles for tracking page */
+        .tracking-result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .tracking-timeline {
+            position: relative;
+            margin-top: 2rem;
+        }
+        .timeline-item {
+            padding: 1rem 0 1rem 2.5rem;
+            position: relative;
+            border-left: 2px solid #ddd;
+            margin-left: 1rem;
+        }
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+        }
+        .timeline-icon {
+            position: absolute;
+            left: -1rem;
+            top: 1rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 4px #f8f9fa;
+        }
+        .timeline-item.complete .timeline-icon {
+            color: #28a745;
+        }
+        .timeline-item.active .timeline-icon {
+            color: #007bff;
+        }
+        .timeline-content h4 {
+            margin-bottom: 0.25rem;
+        }
+        .timeline-item.complete {
+            border-left-color: #28a745;
+        }
+        .timeline-item.active {
+            border-left-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1 class="logo"><i class="fas fa-truck"></i> SwiftCargo</h1>
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="booking.html"><i class="fas fa-box"></i> Book</a></li>
+                    <li><a href="tracking.html"><i class="fas fa-map-marker-alt"></i> Track</a></li>
+                    <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="tracking-form">
+            <h2><i class="fas fa-search"></i> Track Your Shipment</h2>
+            <p>Enter your tracking number to get real-time updates on your cargo location.</p>
+            <input type="text" id="trackingNumber" placeholder="Enter Tracking Number" required>
+            <button class="btn"><i class="fas fa-search"></i> Track Now</button>
+            
+            <div class="tracking-examples">
+                <h3>Popular Tracking Methods</h3>
+                <div class="tracking-methods">
+                    <div class="method">
+                        <i class="fas fa-barcode"></i>
+                        <p>Tracking Number</p>
+                    </div>
+                    <div class="method">
+                        <i class="fas fa-phone"></i>
+                        <p>Phone Number</p>
+                    </div>
+                    <div class="method">
+                        <i class="fas fa-envelope"></i>
+                        <p>Reference Number</p>
+                    </div>
+                </div>
+                <p class="hint">Need help? Call our support line at +977 9812345678</p>
+            </div>
+        </section>
+        
+        <section class="tracking-faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> How long does delivery typically take?</h3>
+                <p>Delivery times vary based on destination. Within Kathmandu, we deliver within 24 hours. For locations outside the capital, delivery takes 2-5 business days.</p>
+            </div>
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> What if my package is delayed?</h3>
+                <p>We notify you immediately if there are any delays. You can also contact our customer service for updates.</p>
+            </div>
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> Can I change my delivery address?</h3>
+                <p>Yes, you can update your delivery address by contacting our customer service before the package reaches its final delivery station.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3><i class="fas fa-truck"></i> SwiftCargo</h3>
+                <p>Delivering excellence across Nepal since 2020.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="booking.html">Book Cargo</a></li>
+                    <li><a href="tracking.html">Track Shipment</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal</p>
+                <p><i class="fas fa-phone"></i> +977 9812345678</p>
+                <p><i class="fas fa-envelope"></i> info@swiftcargo.np</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 SwiftCargo | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
