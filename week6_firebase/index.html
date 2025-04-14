@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftCargo - Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase SDK -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js"></script> -->
+</head>
+<body>
+    <div class="container">
+        <div class="signup-card">
+            <div class="logo">
+                <img src="/api/placeholder/200/80" alt="SwiftCargo Logo">
+            </div>
+            <h1>Create Account</h1>
+            <p>Join SwiftCargo for fast and reliable delivery services</p>
+            
+            <form id="signup-form">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                        <button type="button" id="toggle-password" class="eye-icon">👁️</button>
+                    </div>
+                </div>
+                
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+            
+            <div class="signup-footer">
+                <p>Already have an account? <a href="#">Log In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
