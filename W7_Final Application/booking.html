@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Cargo - SwiftCargo</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Payment section styles */
+        .payment-options {
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-method {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            width: calc(50% - 10px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .payment-method:hover {
+            border-color: #3498db;
+        }
+        
+        .payment-method.selected {
+            border-color: #3498db;
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .payment-method img {
+            width: 60px;
+            height: auto;
+        }
+        
+        .payment-details {
+            margin-top: 20px;
+        }
+        
+        .payment-details > div {
+            display: none;
+        }
+        
+        .payment-details > div.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .payment-method {
+                width: 100%;
+            }
+        }
+        
+        .mobile-banking-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .bank-option {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .bank-option:hover {
+            border-color: #3498db;
+        }
+        
+        .bank-option.selected {
+            border-color: #3498db;
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .bank-option img {
+            width: 30px;
+            height: auto;
+        }
+        
+        /* Placeholder for bank logos */
+        .bank-logo {
+            background-color: #f1f1f1;
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1 class="logo"><i class="fas fa-truck"></i> SwiftCargo</h1>
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="booking.html"><i class="fas fa-box"></i> Book</a></li>
+                    <li><a href="tracking.html"><i class="fas fa-map-marker-alt"></i> Track</a></li>
+                    <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="booking-form">
+            <h2><i class="fas fa-box"></i> Book Your Cargo</h2>
+            <p>Fill out the form below to book your cargo for shipping.</p>
+            
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="shipmentType"><i class="fas fa-tag"></i> Shipment Type</label>
+                    <select id="shipmentType" required>
+                        <option value="" disabled selected>Select shipment type</option>
+                        <option value="document">Document</option>
+                        <option value="parcel">Parcel</option>
+                        <option value="commercial">Commercial Goods</option>
+                        <option value="fragile">Fragile Items</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pickup"><i class="fas fa-map-marker-alt"></i> Pickup Location</label>
+                        <input type="text" id="pickup" placeholder="Enter pickup address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="destination"><i class="fas fa-map-marker-alt"></i> Destination</label>
+                        <input type="text" id="destination" placeholder="Enter destination address" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pickupDate"><i class="fas fa-calendar-alt"></i> Pickup Date</label>
+                        <input type="date" id="pickupDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pickupTime"><i class="fas fa-clock"></i> Pickup Time</label>
+                        <select id="pickupTime" required>
+                            <option value="" disabled selected>Select time</option>
+                            <option value="morning">Morning (9AM - 12PM)</option>
+                            <option value="afternoon">Afternoon (12PM - 3PM)</option>
+                            <option value="evening">Evening (3PM - 6PM)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="details"><i class="fas fa-info-circle"></i> Cargo Details</label>
+                    <textarea id="details" placeholder="Describe your cargo (weight, dimensions, type, etc.)" required></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactName"><i class="fas fa-user"></i> Contact Name</label>
+                        <input type="text" id="contactName" placeholder="Your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contactPhone"><i class="fas fa-phone"></i> Contact Phone</label>
+                        <input type="tel" id="contactPhone" placeholder="Your phone number" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contactEmail"><i class="fas fa-envelope"></i> Contact Email</label>
+                    <input type="email" id="contactEmail" placeholder="Your email address" required>
+                </div>
+                
+                <!-- Payment Section -->
+                <div class="payment-options">
+                    <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+                    <p>Choose your preferred payment option to proceed with booking</p>
+                    
+                    <div class="payment-methods">
+                        <div class="payment-method" data-method="esewa">
+                            <!-- <img src="/api/placeholder/60/30" alt="eSewa logo"> -->
+                            <div>
+                                <h4>eSewa</h4>
+                                <p>Pay directly using eSewa</p>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-method" data-method="mobile-banking">
+                            <!-- <img src="/api/placeholder/60/30" alt="Mobile Banking logo"> -->
+                            <div>
+                                <h4>Mobile Banking</h4>
+                                <p>Pay through your bank's mobile app</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-details">
+                        <!-- eSewa details -->
+                        <div id="esewa-details">
+                            <div class="form-group">
+                                <label for="esewa-id"><i class="fas fa-user"></i> eSewa ID</label>
+                                <input type="text" id="esewa-id" placeholder="Enter your eSewa ID" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="payment-note">
+                                    <i class="fas fa-info-circle"></i> You will be redirected to eSewa payment gateway after submitting the form
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Mobile Banking details -->
+                        <div id="mobile-banking-details">
+                            <div class="form-group">
+                                <label><i class="fas fa-university"></i> Select Your Bank</label>
+                                <div class="mobile-banking-options">
+                                    <div class="bank-option" data-bank="global-ime">
+                                        <div class="bank-logo">GI</div>
+                                        <span>Global IME</span>
+                                    </div>
+                                    <div class="bank-option" data-bank="nabil">
+                                        <div class="bank-logo">NB</div>
+                                        <span>Nabil</span>
+                                    </div>
+                                    <div class="bank-option" data-bank="nmb">
+                                        <div class="bank-logo">NMB</div>
+                                        <span>NMB</span>
+                                    </div>
+                                    <div class="bank-option" data-bank="nic-asia">
+                                        <div class="bank-logo">NIC</div>
+                                        <span>NIC Asia</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="account-number"><i class="fas fa-credit-card"></i> Account Number</label>
+                                <input type="text" id="account-number" placeholder="Enter your bank account number" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <p class="payment-note">
+                                    <i class="fas fa-info-circle"></i> You will receive a notification on your banking app to complete the payment
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="termsAgreement" required>
+                    <label for="termsAgreement">I agree to the <a href="#">Terms and Conditions</a></label>
+                </div>
+                
+                <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Submit Booking</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3><i class="fas fa-truck"></i> SwiftCargo</h3>
+                <p>Delivering excellence across Nepal since 2020.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="booking.html">Book Cargo</a></li>
+                    <li><a href="tracking.html">Track Shipment</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal</p>
+                <p><i class="fas fa-phone"></i> +977 9812345678</p>
+                <p><i class="fas fa-envelope"></i> info@swiftcargo.np</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 SwiftCargo | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Payment method selection
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                // Remove selected class from all methods
+                document.querySelectorAll('.payment-method').forEach(m => {
+                    m.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked method
+                this.classList.add('selected');
+                
+                // Hide all payment details
+                document.querySelectorAll('.payment-details > div').forEach(detail => {
+                    detail.classList.remove('active');
+                });
+                
+                // Show selected payment details
+                const methodType = this.getAttribute('data-method');
+                if (methodType === 'esewa') {
+                    document.getElementById('esewa-details').classList.add('active');
+                } else if (methodType === 'mobile-banking') {
+                    document.getElementById('mobile-banking-details').classList.add('active');
+                }
+                
+                // Update form requirements
+                updateFormRequirements();
+            });
+        });
+        
+        // Bank selection
+        document.querySelectorAll('.bank-option').forEach(bank => {
+            bank.addEventListener('click', function() {
+                // Remove selected class from all banks
+                document.querySelectorAll('.bank-option').forEach(b => {
+                    b.classList.remove('selected');
+                });
+                
+                // Add selected class to clicked bank
+                this.classList.add('selected');
+            });
+        });
+        
+        // Update form field requirements based on payment method
+        function updateFormRequirements() {
+            const esewaSelected = document.querySelector('.payment-method[data-method="esewa"]').classList.contains('selected');
+            const mobileBankingSelected = document.querySelector('.payment-method[data-method="mobile-banking"]').classList.contains('selected');
+            
+            // eSewa fields
+            document.getElementById('esewa-id').required = esewaSelected;
+            
+            // Mobile banking fields
+            document.getElementById('account-number').required = mobileBankingSelected;
+        }
+        
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate payment method selection
+            if (!document.querySelector('.payment-method.selected')) {
+                alert('Please select a payment method');
+                return;
+            }
+            
+            // Validate bank selection if mobile banking is selected
+            if (document.querySelector('.payment-method[data-method="mobile-banking"]').classList.contains('selected') && 
+                !document.querySelector('.bank-option.selected')) {
+                alert('Please select your bank');
+                return;
+            }
+            
+            // Here you would normally handle the form submission
+            // For demonstration purposes, we'll just show a success message
+            alert('Booking submitted successfully! Redirecting to payment gateway...');
+            
+            // In a real application, you would redirect to the payment gateway or process the payment
+        });
+        
+        // Initialize with eSewa selected by default
+        document.querySelector('.payment-method[data-method="esewa"]').click();
+    </script>
+</body>
+</html>
